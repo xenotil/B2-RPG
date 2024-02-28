@@ -1,0 +1,1 @@
+<p>Vous avais vincu votre adversaire et profiter d'un moment de calme pour reprendre vos essprit</p>
