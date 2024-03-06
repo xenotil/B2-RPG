@@ -6,7 +6,7 @@ use Rpg\Models\Ennemys\Ennemy;
 
 
 
-class Goblin extends Ennemy {
+class Boss extends Ennemy {
     public function __construct(int $level){
         $noms = [
             'Alduien',
@@ -15,11 +15,11 @@ class Goblin extends Ennemy {
         ];
         parent::__construct(
             $noms[random_int(0,2)],//Nom du Monstre
-            5+5*$level,// Nombre de Pv
-            5+2*$level,// Nombre de mana
+            30+5*$level,// Nombre de Pv
+            30+2*$level,// Nombre de mana
             $level,//level
             (random_int(0,5))*$level,// Nombre de piece d'or
-            1*$level-1,// Def
+            1*$level,// Def
             5*$level,// Dpt
         );
     }

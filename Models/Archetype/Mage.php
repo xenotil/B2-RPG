@@ -18,6 +18,11 @@ class Mage extends Player {
             5,// Dpt
         );
     }
+    public function levelup(){
+        parent::levelup();
+        echo "je rajouter des truc ici";
+    }
+    
     public function specialAttack(Player $ennemy): void {
         $this->mana += 10; // Vol de mana à l'ennemi
         $ennemy->mana -= 10; // Perte de mana pour l'ennemi

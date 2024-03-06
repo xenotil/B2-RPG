@@ -66,27 +66,46 @@ class GameEngine {
         $this->storage->save('ennemy',$ennemy);
         $this->logAction("Ennemy créé : " . $ennemy->name);
     }
-    private function handleCombat(array $formData) : void {
-        if($this->player->health > 0){
-            $damagePlayer = $this->player->damage - $this->ennemy->defense;
-            $this->ennemy->health = $this->ennemy->health - $damagePlayer;
-            $this->storage->save('ennemy',$this->ennemy);
-            $this->logAction("Vous infliger : " . $damagePlayer . "damage a " . $this->ennemy->name);
-        } else{
-
+    private function handleCombat(array $formData): void {
+        // Check if the player chose to use a special attack
+        $useSpecialAttack = isset($formData['special_attack']) && $formData['special_attack'] === 'true';
+    
+        if ($this->player->health > 0) {
+            // Player's turn
+            if ($useSpecialAttack && $this->player->mana >= 5) {
+                // Use special attack
+                $this->player->specialAttack($this->ennemy);
+                $this->logAction("Vous utilisez une attaque spéciale!");
+            } else {
+                // Use basic attack
+                $this->player->BasicAttack($this->ennemy);
+                $this->logAction("Vous infligez " . $this->player->damage . " de dégâts à " . $this->ennemy->name);
+            }
         }
-        if ($this->ennemy->health > 0){
-            $damageEnnemy = $this->ennemy->damage - $this->player->defense;
-            $this->player->health = $this->player->health - $damageEnnemy;
-            $this->storage->save('player',$this->player);
-            $this->logAction($this->ennemy->name . " vous infliger : " . $damageEnnemy . "damage");
-        }else{
-            $this->player->level = $this->player->level + $this->ennemy->level;
-            $this->storage->save('player',$this->player);
-            $this->logAction($this->ennemy->name. " est mort Felicitation!");
-            $this->logAction($this->player->name. " gagne un Niveaux !");
-        } 
+    
+        if ($this->ennemy->health > 0) {
+            // Enemy's turn
+            $this->ennemy->BasicAttack($this->player);
+            $this->logAction($this->ennemy->name . " vous inflige " . $this->ennemy->damage . " de dégâts");
+        } else {
+            // Player wins the battle
+            $this->player->level += $this->ennemy->level;
+            $this->storage->save('player', $this->player);
+            $this->logAction($this->ennemy->name . " est mort! Félicitations!");
+            $this->player->xp += $this->ennemy->xp; // Assuming you have xp for defeating enemies
+            $this->storage->save('player', $this->player);
+    
+            // Check if the player leveled up
+            if ($this->player->xp >= $this->player->level) {
+                $this->player->levelup();
+                $this->logAction("Vous avez monté de niveau!");
+            }
+    
+            $this->ennemy = NULL;
+            $this->storage->save('ennemy', $this->ennemy);
+        }
     }
+    
 
     // Méthode appelée lorsqu'on fait soumet un formulaire,
     // utilise le champ caché "form" afin de rediriger sur la méthode associée
@@ -118,7 +137,7 @@ class GameEngine {
          // Choix du template d'affichage selon l'état du jeu
         if($this->player == NULL){
             require 'views/player-name-form.view.php';
-        } else if ( $this->player->level > 1){
+        } else if ( $this->ennemy == NULL){
             require 'views/safe-zone.view.php';
         } else if($this->player->health <= 0){
             require 'views/defeat-screen.view.php';
@@ -141,3 +160,5 @@ class GameEngine {
         }
     }
 }
+
+?>

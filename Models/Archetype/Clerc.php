@@ -18,6 +18,10 @@ class Clerc extends Player {
             5,// Dpt
         );
     }
+    public function levelup(){
+        parent::levelup();
+        echo "je rajouter des truc ici";
+    }
     public function specialAttack(Player $ennemy): void {
         $healingAmount = min($this->mana, 20); // Le clerc peut restaurer jusqu'à 20 points de vie
         $this->mana -= $healingAmount; // Dépense de la mana

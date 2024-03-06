@@ -18,6 +18,11 @@ class Warrior extends Player {
             5,// Dpt
         );
     }
+    public function levelup(){
+        parent::levelup();
+        $this->logAction("je rajouter des truc ici");
+    }
+    
     public function specialAttack(Player $ennemy): void {
         $this->mana -= 5; // Dépense de la mana
         $this->defense *= 2; // Double la défense
