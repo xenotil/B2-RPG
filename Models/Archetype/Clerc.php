@@ -20,7 +20,12 @@ class Clerc extends Player {
     }
     public function levelup(){
         parent::levelup();
-        echo "je rajouter des truc ici";
+        $this->manaMax += 5;
+        $this->mana += 2;
+        $this->damage += 2;
+        $this->defense ++;
+        $this->healthMax += 5;
+        $this->health +=2;
     }
 
     public function specialAttack(Ennemy $enemy): void {

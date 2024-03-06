@@ -20,8 +20,12 @@ class Mage extends Player {
     }
     public function levelup(){
         parent::levelup();
-        $this->manaMax += 5; 
+        $this->manaMax += 5;
+        $this->mana += 2;
         $this->damage += 2;
+        $this->defense ++;
+        $this->healthMax += 5;
+        $this->health +=2;
     }
     // Mage.php
     public function specialAttack(Ennemy $enemy): void {
