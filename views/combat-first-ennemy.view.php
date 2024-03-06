@@ -19,11 +19,10 @@
         <form method="POST" class="mt-3">
             <input type="hidden" name="form" value="attaque"/>
 
-            <input type="hidden" name="basic_attack" value="basic_attack"/>
-            <button type="submit" class="btn btn-primary mr-2">Attaque de base</button>
+            <button type="submit" class="btn btn-primary mr-2" name="attaque" value="basic_attack">Attaque de base</button>
 
-            <input type="hidden" name="special_attack" value="special_attack"/>
-            <button type="submit" class="btn btn-danger">Attaque spéciale</button>
+            <button type="submit" class="btn btn-danger" name="attaque" value="special_attack">Attaque spéciale</button>
         </form>
+
     </div>
 </body>

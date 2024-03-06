@@ -141,16 +141,14 @@ class GameEngine {
                 break;
             case 'attaque':
                 // Check if either basic_attack or special_attack is set in the form data
-                if (isset($formData['basic_attack'])) {
-                    $attackType = 'basic_attack';
-                } elseif (isset($formData['special_attack'])) {
-                    $attackType = 'special_attack';
+                if (isset($formData['attaque'])) {
+                    $attackType = $formData['attaque'];
                 } else {
-                    throw new \Exception("Attaque non reconnue.");
+                   throw new \Exception("Type d'attaque non spécifié.");
                 }
                 // Handle the combat with the correct attack type
-                $this->handleCombat(['attaque' => $attackType]);
-                break;
+                $this->handleCombat($formData);
+                break;                
             case 'safe-place':
                 $this->handleSafePlace($formData);
                 break;
