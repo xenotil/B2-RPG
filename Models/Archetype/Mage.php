@@ -30,7 +30,7 @@ class Mage extends Player {
     // Mage.php
     public function specialAttack(Ennemy $enemy): void {
         $this->mana += 10; // Vol de mana à l'ennemi
-        $enemy->mana -= 10; // Reduce enemy's mana by 10
+        $enemy->mana = max(0, $enemy->mana - 10); // Reduce enemy's mana by 10
     }
 }
 

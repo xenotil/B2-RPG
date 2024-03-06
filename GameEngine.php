@@ -205,7 +205,9 @@ class GameEngine {
 
     private function render(): void {
         // Choix du template d'affichage selon l'état du jeu
-        if ($this->player === null) {
+        if ($this->player !== null && $this->player->level >= 5) {
+            require 'views/victory.view.php';
+        } elseif ($this->player === null) {
             require 'views/player-name-form.view.php';
         } elseif ($this->player->health <= 0) {
             require 'views/defeat-screen.view.php';
