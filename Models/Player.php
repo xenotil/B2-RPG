@@ -10,8 +10,8 @@ abstract class Player extends State {
         $this->name = $name;
         $this->health = $healthMax;
         $this->healthMax = $healthMax;
+        $this->manaMax = $manaMax;
         $this->mana = $manaMax;
-        $this->manaPool = $manaMax;
         $this->level = $level;
         $this->xp = $xp;
         $this->gold = $gold;

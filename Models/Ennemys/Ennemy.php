@@ -11,7 +11,7 @@ abstract class Ennemy extends State {
         $this->name = $name;
         $this->health = $healthMax;
         $this->healthMax = $healthMax;
-        $this->manaPool = $manaMax;
+        $this->manaMax = $manaMax;
         $this->mana = $manaMax;
         $this->level = $level;
         $this->gold = $gold;

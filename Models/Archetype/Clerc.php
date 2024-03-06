@@ -17,6 +17,7 @@ class Clerc extends Player {
             1,// Def
             5,// Dpt
         );
+        $this->manaMax = 25; // Initialize the manaMax property
     }
     public function levelup(){
         parent::levelup();

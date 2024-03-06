@@ -7,7 +7,7 @@ abstract class State {
     public int $health;
     public int $healthMax;
     public int $defense;
-    public int $manaPool;
+    public int $manaMax;
     public int $mana;
     public int $level;
     public int $gold;

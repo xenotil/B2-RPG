@@ -7,12 +7,12 @@
                 <h3><?= $this->player->name ?></h3>
                 <p>Niveau <?= $this->player->level?></p>
                 <p><?= $this->player->health ?>/<?= $this->player->healthMax ?> HP</p>
-                <p><?= $this->player->mana ?>/<?= $this->player->manaPool ?> MP</p>
+                <p><?= $this->player->mana ?>/<?= $this->player->manaMax ?> MP</p>
             </div>
             <div class="col">
                 <h3><?= $this->ennemy->name ?></h3>
                 <p><?= $this->ennemy->health ?>/<?= $this->ennemy->healthMax ?> HP</p>
-                <p><?= $this->ennemy->mana ?>/<?= $this->ennemy->manaPool ?> MP</p>
+                <p><?= $this->ennemy->mana ?>/<?= $this->ennemy->manaMax ?> MP</p>
             </div>
         </div>
 
