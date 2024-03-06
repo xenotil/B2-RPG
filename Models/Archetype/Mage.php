@@ -1,7 +1,7 @@
 <?php
 
 namespace Rpg\Models\Archetype;
-
+use Rpg\Models\Ennemys\Ennemy;
 use Rpg\Models\Player;
 
 class Mage extends Player {
@@ -20,12 +20,13 @@ class Mage extends Player {
     }
     public function levelup(){
         parent::levelup();
-        echo "je rajouter des truc ici";
+        $this->manaMax += 5; 
+        $this->damage += 2;
     }
-    
-    public function specialAttack(Player $ennemy): void {
+    // Mage.php
+    public function specialAttack(Ennemy $enemy): void {
         $this->mana += 10; // Vol de mana à l'ennemi
-        $ennemy->mana -= 10; // Perte de mana pour l'ennemi
+        $enemy->mana -= 10; // Reduce enemy's mana by 10
     }
 }
 

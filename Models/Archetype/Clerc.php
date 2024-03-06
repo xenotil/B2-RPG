@@ -1,7 +1,7 @@
 <?php
 
 namespace Rpg\Models\Archetype;
-
+use Rpg\Models\Ennemys\Ennemy;
 use Rpg\Models\Player;
 
 class Clerc extends Player {
@@ -22,12 +22,14 @@ class Clerc extends Player {
         parent::levelup();
         echo "je rajouter des truc ici";
     }
-    public function specialAttack(Player $ennemy): void {
-        $healingAmount = min($this->mana, 20); // Le clerc peut restaurer jusqu'à 20 points de vie
-        $this->mana -= $healingAmount; // Dépense de la mana
-        $this->health += $healingAmount; // Restauration des points de vie
-        $this->health = min($this->health, $this->healthMax); // Assurer que les points de vie ne dépassent pas le maximum
+
+    public function specialAttack(Ennemy $enemy): void {
+        $healingAmount = min($this->mana, 20); // Maximum of 20 health points restored
+        $this->mana -= $healingAmount; // Spend mana
+        $this->health += $healingAmount; // Restore health
+        $this->health = min($this->health, $this->healthMax); // Cap health at max value
     }
+
 }
 
 ?>

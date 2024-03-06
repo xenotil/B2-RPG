@@ -1,12 +1,12 @@
 <?php
 
 namespace Rpg\Models;
-
-use Rpg\Models\State;
+use Rpg\Models\Ennemys\Ennemy;
 
 abstract class Player extends State {
     public int $xp;
-    public function __construct(string $name, int $healthMax, int $manaMax, int $level, int $xp, int $gold, int $defense, int $damage){
+
+    public function __construct(string $name, int $healthMax, int $manaMax, int $level, int $xp, int $gold, int $defense, int $damage) {
         $this->name = $name;
         $this->health = $healthMax;
         $this->healthMax = $healthMax;
@@ -18,17 +18,15 @@ abstract class Player extends State {
         $this->defense = $defense;
         $this->damage = $damage;
     }
-    public function levelup(){
-        $level = $level + 1;
-        $xp = 0;
-        return;
-    }
-    public function BasicAttack(Player $ennemy){
-        $damage = max(1, $this->damage - $ennemy->defense);
-        $ennemy->health -= $damage;
-    }
 
-    abstract public function specialAttack(Player $ennemy): void;
+    public function levelup() {
+        $this->level++;
+        $this->xp = 0;
+    }
+    public function basicAttack(State $target): void {
+        $damageDealt = max(0, $this->damage - $target->defense);
+        $target->health -= $damageDealt;
+        $target->health = max(0, $target->health);
+    }
+    abstract public function specialAttack(Ennemy $enemy): void;
 }
-
-?>

@@ -18,6 +18,11 @@ abstract class Ennemy extends State {
         $this->defense = $defense;
         $this->damage = $damage;
     }
+    public function basicAttack(State $target): void {
+        $damageDealt = max(0, $this->damage - $target->defense);
+        $target->health -= $damageDealt;
+        $target->health = max(0, $target->health);
+    }
 }
 
 

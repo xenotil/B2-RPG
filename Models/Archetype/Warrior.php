@@ -1,7 +1,7 @@
 <?php
 
 namespace Rpg\Models\Archetype;
-
+use Rpg\Models\Ennemys\Ennemy;
 use Rpg\Models\Player;
 
 class Warrior extends Player {
@@ -20,13 +20,14 @@ class Warrior extends Player {
     }
     public function levelup(){
         parent::levelup();
-        $this->logAction("je rajouter des truc ici");
+        $this->damage += 2;
+        $this->defense ++;
+        $this->healthMax += 10;
+        $this->health +=5;
     }
     
-    public function specialAttack(Player $ennemy): void {
-        $this->mana -= 5; // Dépense de la mana
-        $this->defense *= 2; // Double la défense
+    public function specialAttack(Ennemy $enemy): void {
+        $this->damage *= 2; // Increase damage by 50%
     }
 }
-
 ?>

@@ -17,12 +17,12 @@
         </div>
 
         <form method="POST" class="mt-3">
-            <input type="hidden" name="form" value="basic_attack"/>
+            <input type="hidden" name="form" value="attaque"/>
+
+            <input type="hidden" name="basic_attack" value="basic_attack"/>
             <button type="submit" class="btn btn-primary mr-2">Attaque de base</button>
-        </form>
-        
-        <form method="POST" class="mt-3">
-            <input type="hidden" name="form" value="special_attack"/>
+
+            <input type="hidden" name="special_attack" value="special_attack"/>
             <button type="submit" class="btn btn-danger">Attaque spéciale</button>
         </form>
     </div>
